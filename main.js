@@ -80,10 +80,11 @@ for(let i = 0; i<palette.length; i++){
 }
 
 for(let i = 0; i<canvasSquares.length;i++){
-  // canvasSquares[i].addEventListener('click', function(){
-  //   console.log(canvasSquares[i].classList);
-  //   canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
-  // })
+  canvasSquares[i].addEventListener('click', function(){
+    isMouseDown = false;
+    console.log(canvasSquares[i].classList);
+    canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
+  })
   canvasSquares[i].addEventListener('mouseenter', function(){
     if(isMouseDown === true){
       canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
