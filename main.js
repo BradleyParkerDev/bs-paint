@@ -49,7 +49,26 @@ while (count <= gridWidth * gridWidth) {
 // Add queries for all your squares, palette colors, and brush here.
 // (Note the singular or plural used in that sentence!)
 
+let brush = document.querySelector('.current-brush');
+brush.addEventListener('click',function(){
+  console.log('Current brush!')
+})
 
+let palette = document.querySelectorAll('.palette div');
+for(let i = 0; i<palette.length; i++){
+  palette[i].addEventListener('click',function(){
+    console.log(palette[i].classList);
+    brush.classList.replace(brush.classList[1],palette[i].classList[1]);
+  })
+}
+
+let canvasSquares = document.querySelectorAll('.canvas div');
+for(let i = 0; i<canvasSquares.length;i++){
+  canvasSquares[i].addEventListener('click', function(){
+    console.log(canvasSquares[i].classList);
+    canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
+  })
+}
 
 /****************************
  * EVENT LISTENER FUNCTIONS *
