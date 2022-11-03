@@ -50,25 +50,14 @@ while (count <= gridWidth * gridWidth) {
 // (Note the singular or plural used in that sentence!)
 
 let brush = document.querySelector('.current-brush');
-brush.addEventListener('click',function(){
-  console.log('Current brush!')
-})
 
 let palette = document.querySelectorAll('.palette div');
-for(let i = 0; i<palette.length; i++){
-  palette[i].addEventListener('click',function(){
-    console.log(palette[i].classList);
-    brush.classList.replace(brush.classList[1],palette[i].classList[1]);
-  })
-}
 
 let canvasSquares = document.querySelectorAll('.canvas div');
-for(let i = 0; i<canvasSquares.length;i++){
-  canvasSquares[i].addEventListener('click', function(){
-    console.log(canvasSquares[i].classList);
-    canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
-  })
-}
+
+let app = document.querySelector('.app');
+
+let isMouseDown = false;
 
 /****************************
  * EVENT LISTENER FUNCTIONS *
@@ -79,9 +68,43 @@ for(let i = 0; i<canvasSquares.length;i++){
 // empty at first, though a console.log just to know they're being
 // run as event listeners (after the next step is set up) isn't a
 // bad idea for testing purposes.
+brush.addEventListener('click',function(){
+  console.log('Current brush!')
+})
 
+for(let i = 0; i<palette.length; i++){
+  palette[i].addEventListener('click',function(){
+    console.log(palette[i].classList);
+    brush.classList.replace(brush.classList[1],palette[i].classList[1]);
+  })
+}
 
+for(let i = 0; i<canvasSquares.length;i++){
+  // canvasSquares[i].addEventListener('click', function(){
+  //   console.log(canvasSquares[i].classList);
+  //   canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
+  // })
+  canvasSquares[i].addEventListener('mouseenter', function(){
+    if(isMouseDown === true){
+      canvasSquares[i].classList.replace(canvasSquares[i].classList[1],brush.classList[1]);
+    }
+  })
+}
 
+app.addEventListener('mousedown', function(){
+  console.log('Mouse is down');
+  isMouseDown = true;
+  console.log('isMouseDown: ' + isMouseDown);
+})
+
+app.addEventListener('mouseup', function(){
+  console.log('Mouse is up');
+  isMouseDown = false;
+  console.log('isMouseDown: ' + isMouseDown);
+})
+
+//mousedown - checks if user left clicks and holds
+//mouseup - checks for when user releases that left click
 /**************************
  * WIRING IT ALL TOGETHER *
 **************************/
